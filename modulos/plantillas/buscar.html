@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %} Consulta Empresas Registradas {% endblock %}
+{% block content %} 
+<div style=" border: 1px solid; border-color:  white; margin-top: 70px;">
+    <h5 style="text-align: center; color: #000080; font-weight: bold; margin-top: 30px;"> Consulta de empresas inscritas en el registro de Departamentos de Gestion Ambiental</h5>
+        <div class="container border border-primary">
+        <br>
+        <div class="row vh-100, justify-content-center y align-items-center" >  
+            <div class="col-md-4" style="height: 60px;" >
+                <form action="buscar" method="GET">
+                <div class="form-group">
+                    <div class="input-group">                      
+                        <input type="text" name="prd" class="form-control rounded" placeholder="Ingrese el NIT"  aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+
+{% if empresa %}
+<p>Resultados busqueda NIT: <strong>{{query}}</strong></p>  
+
+<div class="table-responsive-md">
+<table class="table">
+    <thead class="thead-dark">
+        <tr class="table-success">
+        <th>Razon Social</th>
+        <th>Direccion</th>
+        <th>Municipio</th>
+        <th>telefono</th>
+        <th>correo</th>
+        <th>pagina_web</th>
+        <th>tipo_empresa</th>
+      </tr>
+    </thead>
+    {% for emp in empresa %}
+    <tbody>
+        <tr>
+        <td>{{ emp.razon_social }}</td>
+        <td>{{ emp.direccion }}</td>
+        <td>{{ emp.municipio }}</td>
+        <td>{{ emp.telefono }}</td>
+        <td>{{ emp.correo }}</td>
+        <td>{{ emp.pagina_web }}</td>
+        <td>{{ emp.tipo_empresa }}</td>
+      </tr>
+    </tbody>
+      {% endfor %}
+</table>
+</div>
+<p>  Registros Encontrados: {{empresa|length}} empresas</p>
+<br>
+<br>
+{% else %}
+    <p>La consulta no ha encontrado Registros..</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endif %}
+{% endblock %}

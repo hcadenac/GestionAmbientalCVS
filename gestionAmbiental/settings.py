@@ -55,7 +55,7 @@ ROOT_URLCONF = 'gestionAmbiental.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['C:/Users/Hugo/Desktop/CursoDjango/gestionAmbiental/modulos/plantillas'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
