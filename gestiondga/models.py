@@ -7,7 +7,8 @@ class Representante (models.Model):
     nombre_rep = models.CharField(max_length=50, null=False, blank=False, verbose_name="Nombre Representante Legal")
 
     def __str__(self):
-        txt= "{0} Cedula: {1} " 
+        #return self.cedula
+        txt= "Nombre: {0} Cedula: {1} " 
         return txt.format(self.nombre_rep, self.cedula)
 
 class Municipio (models.Model):
@@ -26,9 +27,9 @@ class DGA (models.Model):
     cargo = models.CharField(max_length=25, null=False, blank = False)
     email_dga = models.EmailField()
 
-    #def __str__(self):
-        #txt= "{0} Responsable: {1} Cargo:{2} " 
-        #return txt.format(self.id_dga, self.nombre_responsable, self.cargo)
+    def __str__(self):
+        txt= "Responsable: {0} Cargo:{1}" 
+        return txt.format(self.nombre_responsable, self.cargo)
 
 class Empresa (models.Model):
     nit = models.CharField(max_length=11, primary_key=True)
@@ -65,8 +66,8 @@ class Empresa (models.Model):
     Responsable_DGA = models.ForeignKey(DGA, null=False, blank=False, on_delete=models.CASCADE) 
 
     def __str__(self):
-        txt= "{0} NIT: {1} " 
-        return txt.format(self.razon_social, self.nit)
+        txt= "{0} NIT: {1} {2} {3} {4}" 
+        return txt.format(self.razon_social, self.nit, self.direccion, self.telefono, self.correo)
 
 class Funcionario(models.Model):
     id_funcionario= models.CharField(max_length=11)

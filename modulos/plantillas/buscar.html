@@ -2,8 +2,10 @@
 
 {% block title %} Consulta Empresas Registradas {% endblock %}
 {% block content %} 
-<div style=" border: 1px solid; border-color:  white; margin-top: 70px;">
-    <h5 style="text-align: center; color: #000080; font-weight: bold; margin-top: 30px;"> Consulta de empresas inscritas en el registro de Departamentos de Gestion Ambiental</h5>
+<!-- style=" border: 1px solid; border-color:  white; margin-top: 40px;" -->
+<!-- style="text-align: center; color: #000080; font-weight: bold; margin-top: 30px;" -->
+<div id="div-form">
+    <h5 id="text-form"> Consulta de empresas inscritas en el registro de Departamentos de Gestion Ambiental</h5>
         <div class="container border border-primary">
         <br>
         <div class="row vh-100, justify-content-center y align-items-center" >  
@@ -25,47 +27,79 @@
     </div>
 </div>
 <br>
-<br>
-<br>
-
 
 {% if empresa %}
 <p>Resultados busqueda NIT: <strong>{{query}}</strong></p>  
-
-<div class="table-responsive-md">
-<table class="table">
-    <thead class="thead-dark">
-        <tr class="table-success">
-        <th>Razon Social</th>
-        <th>Direccion</th>
-        <th>Municipio</th>
-        <th>telefono</th>
-        <th>correo</th>
-        <th>pagina_web</th>
-        <th>tipo_empresa</th>
-      </tr>
-    </thead>
-    {% for emp in empresa %}
+<div style=" border: 1px solid; border-color:  white; margin-top: 30px;">
+    <h5 id="text-tabla"> INFORMACION DE LA EMPRESA</h5>
+</div>
+<div class="table-responsive-md" style="margin-right: 30px;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="table-success">
+                <th>NIT</th>
+                <th>Razon Social</th>
+                <th>Codigo CIIU</th>
+                <th>Direccion</th>
+                <th>Municipio</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Representante Legal</th>
+                <th>Cedula</th>   
+                <th>Tipo Empresa</th>
+            </tr>
+        </thead>
     <tbody>
+    {% for emp in empresa %}
         <tr>
-        <td>{{ emp.razon_social }}</td>
-        <td>{{ emp.direccion }}</td>
-        <td>{{ emp.municipio }}</td>
-        <td>{{ emp.telefono }}</td>
-        <td>{{ emp.correo }}</td>
-        <td>{{ emp.pagina_web }}</td>
-        <td>{{ emp.tipo_empresa }}</td>
-      </tr>
+            <td>{{ emp.nit }}</td>
+            <td>{{ emp.razon_social }}</td>
+            <td>{{ emp.codigo_ciiu }}</td>
+            <td>{{ emp.direccion }}</td>
+            <td>{{ emp.municipio }}</td>
+            <td>{{ emp.telefono }}</td>
+            <td>{{ emp.correo }}</td>
+            <td>{{ emp.cedula_representante.nombre_rep }}</td>
+            <td>{{ emp.cedula_representante.cedula }}</td>
+            <td>{{ emp.tipo_empresa }}</td>
+        </tr>
+    {% endfor %}
     </tbody>
-      {% endfor %}
 </table>
+</div>
+<div style=" border: 1px solid; border-color:  white; margin-top: 30px;">
+    <h5 id="text-tabla"> INFORMACION DEPARTAMENTO DE GESTION AMBIENTAL</h5>
+</div>
+<div class="table-responsive-md" style="margin-right: 30px;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="table-success">
+                <th>Nombre Responsable</th>
+                <th>Nivel Estudio</th>
+                <th>Titulo</th>
+                <th>Cargo</th>
+                <th>Correo</th>
+                <th>Fecha Creacion</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emp in empresa %}
+            <tr>
+                <td>{{ emp.Responsable_DGA.nombre_responsable }}</td>
+                <td>{{ emp.Responsable_DGA.nivel_estudio }}</td>
+                <td>{{ emp.Responsable_DGA.titulo }}</td>
+                <td>{{ emp.Responsable_DGA.cargo }}</td>
+                <td>{{ emp.Responsable_DGA.email_dga }}</td>
+                <td>{{ emp.fecha_creacion_dga }}</td>
+          </tr>
+        </tbody>
+      {% endfor %}
+    </table>
 </div>
 <p>  Registros Encontrados: {{empresa|length}} empresas</p>
 <br>
-<br>
 {% else %}
-    <p>La consulta no ha encontrado Registros..</p>
-    <br>
+    <p>La consulta no ha encontrado Registros...</p>
     <br>
     <br>
     <br>

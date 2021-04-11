@@ -14,10 +14,8 @@ def saludo(request):
     return HttpResponse(documento)
 
 def inicio(request):
-    return render(request, "inicio.html")
-
-def consulta(request):
-    return render(request, "consulta.html")
+   empresa= Empresa.objects.all()
+   return render(request, "inicio.html", {"empresa":empresa})
 
 def busqueda(request):
     return render(request, "buscar.html")
@@ -25,12 +23,14 @@ def busqueda(request):
 def buscar(request):
     
     if request.GET['prd']:
-        #mensaje= "estas buscando esta gonorrea: %r" %request.GET["prd"]
         mynit= request.GET['prd']
-        empresa= Empresa.objects.filter(nit__icontains=mynit)
+        #empresa= Empresa.objects.filter(nit__icontains=mynit)
+        empresa= Empresa.objects.select_related().filter(nit=mynit)
         return render(request, "buscar.html", {"empresa":empresa, "query":mynit})
     else:
         mensaje= "No se ha seleccionado nada ..GONORREA..."
 
-    return HttpResponse(mensaje)
+    #return HttpResponse(mensaje)
+    return render(request, "buscar.html")
+
 

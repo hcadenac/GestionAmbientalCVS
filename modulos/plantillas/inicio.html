@@ -2,19 +2,20 @@
 
 {% block title %} Pagina de inicio Gestion Ambiental {% endblock %}
 {% block content %} 
+{% load static %}
 <div>
-    <h1 style ="font-size: 20px; color:#0d239e; text-align:center; margin-top: 10px; ">Registro Departamento de Gestión Ambiental DGA</h1>
+    <h1 style =" font-family: sans-serif; font-size: 24px; color:#92C02C; text-align:center; margin-top: 25px; ">REGISTRO DEPARTAMENTOS DE GESTION AMBIENTAL DGA</h1>
 </div>
-<hr><!--1-->
-<div style="text-align: justify; border: 1px solid #fdfefe; background-color:#F5FFFA; margin-left: 10px; margin-right: 10px">
-<p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 15px; color:#1e07a1; margin-left: 50px; margin-right: 50px">
+<hr style="color:#12045f; height: 3px;">
+
+<div style=" font-family: sans-serif; text-align: justify; border: 1px solid #fdfefe; background-color:#F5FFFA; margin-left: 10px; margin-right: 10px">
+    <h1 id="text-titulo1">Generalidades</h1>
+
+    <p id="text-parrafo1">
+    <br>
     Los Departamentos de Gestión Ambiental se establecieron mediante la Ley 1124 de 2007, reglamentada mediante el Decreto 1299 de 2008 del Ministerio de Ambiente, Vivienda y Desarrollo Territorial (hoy Ministerio de Ambiente y Desarrollo Sostenible). 
-    teniendo en cuenta lo antrior la corporacion Autonoma Regional de los Valles de Sinu y San jorge, adoptó el formulario “registro de Departamento de Gestión Ambiental,  a través del cual los representantes legales de las empresas obligadas 
-    a conformar este Departamento e informar a la autoridad ambiental su conformación, evitando las sanciones respectivas por el incumplimiento de la norma. 
-    <br>
-    <br>
     Todas las empresas de carácter industrial en la jurisdicción la CVS que se encuentren operando, cuyas actividades de acuerdo a la normatividad ambiental vigente, requieran de licencia ambiental, plan de manejo ambiental, permisos, concesiones y demás autorizaciones ambientales, 
-    deben conformar su Departamento de Gestión Ambiental – DGA, en cumplimiento con el Decreto 1299 del 22 de abril de 2008 del Ministerio de Ambiente y Desarrollo Sostenible.
+    deben conformar su Departamento de Gestión Ambiental – DGA.
     <br>
     <br>
     El DGA hace parte de la estructura organizacional de la empresa y dentro de sus funciones deben hacer un análisis de los aspectos ambientales (elementos, actividades, productos o servicios de una organización que pueden interactuar con el ambiente) para implementar estrategias 
@@ -32,10 +33,48 @@ Principales funciones del departamento de gestión ambiental:</p>
 <li>Proteger y conservar los ecosistemas.</li>
 <li>Los departamentos de gestión ambiental pueden estar conformados por personal propio de las empresas o por personal externo a estas y deben contar con personal capaz de brindar apoyo en las áreas técnica-ambiental, jurídica-ambiental y administrativa de la empresa.</li>  
 </ul>
-<p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 15px; color:#1e07a1; margin-left: 50px; margin-right: 50px">Una vez constituido el DGA, se debe informar a la CVS acerca de su creación, funciones y responsabilidades asignadas; para facilitar al usuario el registro correspondiente.</p> 
-</div>      
-    
 
+<h1 id="text-titulo1">Inscripción DGA</h1>
+<br>
+<p id="text-parrafo1">
+    Una vez constituido el DGA, se debe informar a la CVS acerca de su creación; para facilitar a la corporación el registro correspondiente.
+    Teniendo en cuenta lo anterior la Corporacion Autonoma Regional de los Valles de Sinu y San jorge, adoptó el formulario “registro de Departamento de Gestión Ambiental,  a través del cual los representantes legales de las empresas
+    informan a la autoridad ambiental su conformación. 
+    <br>
+    <br>
+    A continuación se muestran las empresas que han registrado el departamento de Gestion Ambiental en la CVS
+</p> 
+  
+
+{% if empresa %}
+<div class="table-responsive-md" style="margin-right: 50px;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="table-success">
+                <th>NIT</th>
+                <th>RAZON SOCIAL</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for emp in empresa %}
+            <tr>
+                <td>{{ emp.nit }}</td>
+                <td>{{ emp.razon_social }}</td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% else %}
+    <p>La consulta no ha encontrado Registros...</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endif %}
 
 
 
